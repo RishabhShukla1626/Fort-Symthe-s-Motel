@@ -15,18 +15,14 @@ Make sure you have Golang installed on your local machine. You can download it f
 
 Clone the Fort-Symthe-s-Motel repository to your local machine using the following command:
 
-bash
-Copy code
+
 git clone https://github.com/your-username/Fort-Symthe-s-Motel.git
 Navigate to the project directory:
 
-bash
-Copy code
+
 cd Fort-Symthe-s-Motel
 Install the project dependencies using the following command:
 
-arduino
-Copy code
 go get ./...
 
 Note: You can set the PORT variable to any available port you like.
@@ -36,9 +32,9 @@ Build and run the project using the following command:
 **Windows User**
 go run  go run .\cmd\web\
 
-
 if you are on Mac:
 **Mac User**
+
 go run  go run /cmd/web/*.go
 
 
