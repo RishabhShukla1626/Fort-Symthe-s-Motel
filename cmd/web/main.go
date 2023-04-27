@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 	"time"
@@ -47,12 +48,16 @@ func main(){
 	// fmt.Println(fmt.Sprintf("Starting the Application at port %s", portNumber))
 	// _ = http.ListenAndServe(portNumber, nil)
 
+	fmt.Println(fmt.Sprintf("Starting the Application at port %s", portNumber))
+	
 	serve := &http.Server{
 		Addr: portNumber,
 		Handler: routes(&app),
 	}
 
-
 	err = serve.ListenAndServe()
-	log.Fatal(err)
+	if err!= nil{
+		log.Fatal(err)
+	}
+	
 }
