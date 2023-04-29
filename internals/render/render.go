@@ -7,8 +7,9 @@ import (
 	"net/http"
 	"path/filepath"
 
-	"github.com/TheDevCarnage/FortSmythesMotel/pkg/config"
-	"github.com/TheDevCarnage/FortSmythesMotel/pkg/models"
+	"github.com/TheDevCarnage/FortSmythesMotel/internals/config"
+	"github.com/TheDevCarnage/FortSmythesMotel/internals/models"
+	"github.com/justinas/nosurf"
 )
 
 var tc = make(map[string]*template.Template)
@@ -19,12 +20,16 @@ func NewTemplates(a *config.AppConfig){
 }
 
 
-func AddDefaultData(td *models.TemplateData) *models.TemplateData {
+func AddDefaultData(td *models.TemplateData, r *http.Request) *models.TemplateData {
+	td.Flash = app.Session.PopString(r.Context(), "flash")
+	td.Warning = app.Session.PopString(r.Context(), "warning")
+	td.Error = app.Session.PopString(r.Context(), "error")
+	td.CSRFToken = nosurf.Token(r)
 	return td
 }
 
 
-func RenderTemplate(w http.ResponseWriter, tmpl string, td *models.TemplateData) {
+func RenderTemplate(w http.ResponseWriter, r *http.Request, tmpl string, td *models.TemplateData) {
 
 	//create template cache
 	if app.UseCache{
@@ -40,7 +45,7 @@ func RenderTemplate(w http.ResponseWriter, tmpl string, td *models.TemplateData)
 	//render the template
 	buf := new(bytes.Buffer)
 
-	td = AddDefaultData(td)
+	td = AddDefaultData(td, r)
 
 	_ = t.Execute(buf, td)
 	

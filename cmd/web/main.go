@@ -1,14 +1,16 @@
 package main
 
 import (
+	"encoding/gob"
 	"fmt"
 	"log"
 	"net/http"
 	"time"
 
-	"github.com/TheDevCarnage/FortSmythesMotel/pkg/config"
-	"github.com/TheDevCarnage/FortSmythesMotel/pkg/handlers"
-	"github.com/TheDevCarnage/FortSmythesMotel/pkg/render"
+	"github.com/TheDevCarnage/FortSmythesMotel/internals/config"
+	"github.com/TheDevCarnage/FortSmythesMotel/internals/handlers"
+	"github.com/TheDevCarnage/FortSmythesMotel/internals/models"
+	"github.com/TheDevCarnage/FortSmythesMotel/internals/render"
 	"github.com/alexedwards/scs/v2"
 )
 
@@ -19,6 +21,9 @@ var sessions *scs.SessionManager
 
 func main(){
 
+
+	//what we are going to store in session
+	gob.Register(models.Reservation{})
 
 	//change this to true in production
 	app.InProduction = false
