@@ -25,7 +25,7 @@ Install the project dependencies using the following command:
 
 go get ./...
 
-Note: You can set the PORT variable to any available port you like.
+**Note:** You can set the PORT variable to any available port you like.
 
 Build and run the project using the following command:
 
@@ -42,4 +42,4 @@ Once the project is running, you can access it by opening a web browser and navi
 
 That's it! You should now be able to use Fort-Symthe-s-Motel on your local machine. If you encounter any issues or have any questions, please don't hesitate to reach out to the project maintainers.
 
-**Note: **This project is currently a work in progress and is not yet complete. While it has been thoroughly tested and is generally stable, there may be some features that are not fully implemented or that do not work as expected. As such, users are encouraged to report any issues or bugs they encounter to the project maintainers, who will work to address them promptly. Additionally, contributions to the project are always welcome, and we appreciate any help we can get in making this project better.
+**Note:**T his project is currently a work in progress and is not yet complete. While it has been thoroughly tested and is generally stable, there may be some features that are not fully implemented or that do not work as expected. As such, users are encouraged to report any issues or bugs they encounter to the project maintainers, who will work to address them promptly. Additionally, contributions to the project are always welcome, and we appreciate any help we can get in making this project better.
