@@ -1,6 +1,8 @@
 package models
 
-import "time"
+import (
+	"time"
+)
 
 // Reservation: holds reservation data for Reservations table
 type Reservations struct {
@@ -60,4 +62,14 @@ type RoomRestrictions struct{
 	Room 			Rooms
 	Reservation 	Reservations
 	Restriction 	Restrictions
+}
+
+
+//MailData: Holds email messages
+type MailData struct {
+	To 		 string
+	From 	 string
+	Subject  string
+	Content  string
+	Template string
 }
