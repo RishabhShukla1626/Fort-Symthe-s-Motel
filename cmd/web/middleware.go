@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/TheDevCarnage/FortSmythesMotel/internals/handlers"
 	"github.com/justinas/nosurf"
 )
 
@@ -32,4 +33,16 @@ func NoSurf(next http.Handler) http.Handler{
 //SessionLoad saves and loads the sessions on every request
 func SessionLoad(next http.Handler) http.Handler{
 	return sessions.LoadAndSave(next) 
+}
+
+
+func Auth(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request){
+		if !handlers.Repo.IsAuthenticated(r){
+			app.Session.Put(r.Context(), "error", "Login first")
+			http.Redirect(w, r, "/user/login", http.StatusSeeOther)
+			return
+		}
+		next.ServeHTTP(w, r)
+	})
 }

@@ -28,6 +28,9 @@ func main(){
 		log.Fatal(err)
 	}
 	defer db.SQL.Close()
+	defer close(app.MailChan)
+	listenForMail()
+
 	// http.HandleFunc("/", handlers.Repo.Home)
 	// http.HandleFunc("/about", handlers.Repo.About)
 	// fmt.Println(fmt.Sprintf("Starting the Application at port %s", portNumber))
@@ -57,7 +60,8 @@ func run() (*driver.DB, error) {
 	gob.Register(models.Rooms{})
 	gob.Register(models.RoomRestrictions{})
 
-
+	mailChan := make(chan models.MailData)
+    app.MailChan = mailChan
 	//change this to true in production
 	app.InProduction = false
 
